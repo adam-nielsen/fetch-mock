@@ -8,7 +8,6 @@ const FetchMock = require('./lib/index');
 const http = require('http');
 
 FetchMock.global = global;
-FetchMock.statusTextMap = http.STATUS_CODES;
 FetchMock.stream = stream;
 
 FetchMock.config = Object.assign(FetchMock.config, {

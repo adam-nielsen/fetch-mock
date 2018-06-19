@@ -4,7 +4,6 @@ const statusTextMap = require('./lib/status-text');
 const theGlobal = typeof window !== 'undefined' ? window : self;
 
 FetchMock.global = theGlobal;
-FetchMock.statusTextMap = statusTextMap;
 
 FetchMock.config = Object.assign(FetchMock.config, {
 	Promise: theGlobal.Promise,

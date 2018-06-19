@@ -1,3 +1,5 @@
+const { getStatusText } = require('http-status-codes');
+
 const responseConfigProps = [
 	'body',
 	'headers',
@@ -13,7 +15,6 @@ module.exports = class ResponseBuilder {
 		this.url = typeof url === 'object' ? url.url : url;
 		this.responseConfig = responseConfig;
 		this.fetchMockConfig = fetchMock.config;
-		this.statusTextMap = fetchMock.statusTextMap;
 		this.Response = fetchMock.config.Response;
 		this.Headers = fetchMock.config.Headers;
 	}
@@ -70,7 +71,7 @@ e.g. {"body": {"status: "registered"}}`);
 		this.opts = this.responseConfig.opts || {};
 		this.opts.url = this.responseConfig.redirectUrl || this.url;
 		this.opts.status = this.validateStatus(this.responseConfig.status);
-		this.opts.statusText = this.statusTextMap['' + this.opts.status];
+		this.opts.statusText = getStatusText('' + this.opts.status);
 		// Set up response headers. The empty object is to cope with
 		// new Headers(undefined) throwing in Chrome
 		// https://code.google.com/p/chromium/issues/detail?id=335871
